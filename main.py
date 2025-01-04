@@ -1,13 +1,21 @@
+from dataclasses import dataclass
 import mysql.connector
 import pandas as pd
 
-def convert_to_excel(host, user, password, database, table, output_file):
+@dataclass
+class MySQLConfig:
+    host: str
+    user: str
+    password: str
+    database: str
+
+def convert_to_excel(config: MySQLConfig, table: str, output_file: str):
     # Connect to MySQL database
     conn = mysql.connector.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=database
+        host=config.host,
+        user=config.user,
+        password=config.password,
+        database=config.database
     )
 
     # Fetch data from table
