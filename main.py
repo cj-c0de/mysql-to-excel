@@ -9,7 +9,7 @@ class MySQLConfig:
     password: str
     database: str
 
-def convert_to_excel(config: MySQLConfig, table: str, output_file: str):
+def convert_to_excel(config: MySQLConfig, table: str, output_file: str, columns: list = None):
     # Connect to MySQL database
     conn = mysql.connector.connect(
         host=config.host,
@@ -19,7 +19,11 @@ def convert_to_excel(config: MySQLConfig, table: str, output_file: str):
     )
 
     # Fetch data from table
-    query = f'SELECT * FROM {table}'
+    if columns:
+        columns_str = ', '.join(columns)
+    else:
+        columns_str = '*'
+    query = f'SELECT {columns_str} FROM {table}'
     data = pd.read_sql(query, conn)
 
     # Save data to Excel
