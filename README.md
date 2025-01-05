@@ -18,10 +18,10 @@ pip install mysql-to-excel
 
 ## Usage
 1. Create a Configuration:
-Define your MySQL connection settings using the MySQLConfig model.
+Define your MySQL connection settings using the `MySQLConfig` model.
 
 2. Run the Conversion:
-Use the convert_to_excel function to export data:
+Use the `convert_to_excel` function to export data:
 
 ```python
 from mysql_to_excel import MySQLConfig, convert_to_excel
